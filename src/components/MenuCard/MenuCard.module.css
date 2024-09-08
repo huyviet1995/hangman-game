@@ -20,10 +20,23 @@
 .title {
     font-family: "MouseMemoirs";
     position: absolute;
-    top: -95px;
-    color: #fff;
+    top: -91px;
     width: 20rem;
-    font-size: 3rem;
+    font-size: 3em;
+}
+
+.textLeft {
+    position: relative;
+    right: 58px;
+}
+
+.textRight {
+    position: relative;
+    left: 58px;
+}
+
+.textLarge {
+    line-height: 50px;
 }
 
 .playButtonContainer {

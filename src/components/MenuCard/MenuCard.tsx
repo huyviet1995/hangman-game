@@ -1,13 +1,39 @@
 import React from "react";
 import styles from "./MenuCard.module.css";
-import { ReactComponent as HangmanTitle } from "./hangman-title.svg";
 import { ReactComponent as PlayButton } from "./icon-play.svg";
 import { ReactComponent as PlayButtonBackground } from "./play-button-background.svg";
+import Typography from "components/Typography/Typography";
 
 const MenuCard: React.FC = () => {
     return (
         <div className={styles.container}>
-            <HangmanTitle className={styles.title} />
+            <div className={styles.title}>
+                <Typography
+                    size={40}
+                    uppercase
+                    stroke={1}
+                    lineHeight={35}
+                    className={styles.textLeft}
+                >
+                    {"The"}
+                </Typography>
+                <Typography
+                    size={100}
+                    stroke={5}
+                    lineHeight={100}
+                >
+                    {"Hangman"}
+                </Typography>
+                <Typography
+                    size={40}
+                    uppercase
+                    stroke={1}
+                    lineHeight={35}
+                    className={styles.textRight}
+                >
+                    {"Game"}
+                </Typography>
+            </div>
             <button className={styles.playButtonContainer}>
                 <PlayButtonBackground className={styles.playButtonBackground} />
                 <PlayButton className={styles.iconPlay} />

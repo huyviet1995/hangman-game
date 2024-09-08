@@ -1,0 +1,9 @@
+.typography {
+    font-family: "MouseMemoirs", sans-serif;
+    -webkit-text-stroke: 1px black; /* Stroke width and color */
+    color: transparent;
+    background: linear-gradient(180deg, #67b6ff -7.41%, #ffffff 108.39%);
+    background-clip: text;
+    -webkit-background-clip: text; /* Clip the background to the text */
+
+}
