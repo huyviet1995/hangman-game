@@ -4,6 +4,7 @@
     color: transparent;
     background: linear-gradient(180deg, #67b6ff -7.41%, #ffffff 108.39%);
     background-clip: text;
+    font-weight: bold;
     -webkit-background-clip: text; /* Clip the background to the text */
 
 }

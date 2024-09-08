@@ -20,19 +20,20 @@
 .title {
     font-family: "MouseMemoirs";
     position: absolute;
-    top: -91px;
+    top: -56px;
     width: 20rem;
     font-size: 3em;
 }
 
 .textLeft {
-    position: relative;
-    right: 58px;
+    position: absolute;
+    left: 57px;
 }
 
 .textRight {
-    position: relative;
-    left: 58px;
+    position: absolute;
+    bottom: -15px;
+    right: 60px;
 }
 
 .textLarge {

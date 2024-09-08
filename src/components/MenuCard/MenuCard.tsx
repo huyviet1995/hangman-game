@@ -19,7 +19,7 @@ const MenuCard: React.FC = () => {
                 </Typography>
                 <Typography
                     size={100}
-                    stroke={5}
+                    stroke={2}
                     lineHeight={100}
                 >
                     {"Hangman"}
