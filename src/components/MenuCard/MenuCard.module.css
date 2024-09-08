@@ -10,7 +10,7 @@
     );
     justify-content: center;
     min-width: 50%;
-    min-height: 50%;
+    min-height: 60%;
     max-width: 592px;
     max-height: 500px;
     box-shadow: inset 0px -8px 0px 4px #140e66, inset 0px 6px 0px 8px #2463ff;
@@ -61,7 +61,12 @@
 
 .howToPlayButton {
     font-family: 'MouseMemoirs';
+    position: absolute;
+    bottom: 2rem;
     display: flex;
+    color: #fff;
+    font-size: 25px;
+    text-transform: uppercase;
     flex-direction: row;
     justify-content: center;
     align-items: center;
