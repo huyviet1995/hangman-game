@@ -9,7 +9,7 @@
         rgba(0, 20, 121, 0.83) 100%
     );
     justify-content: center;
-    min-width: 50%;
+    min-width: 40%;
     min-height: 60%;
     max-width: 592px;
     max-height: 500px;
@@ -67,6 +67,7 @@
     color: #fff;
     font-size: 25px;
     text-transform: uppercase;
+    cursor: pointer;
     flex-direction: row;
     justify-content: center;
     align-items: center;
