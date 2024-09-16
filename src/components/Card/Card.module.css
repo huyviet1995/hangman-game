@@ -2,24 +2,39 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 20px;
+    padding: 48px;
     border: 1px solid #ccc;
     border-radius: 10px;
     width: 30%;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    background: #ffffff;
+    max-width: 550px;
 }
 
 .cardTitle {
-    font-size: 1.5rem;
-    margin-bottom: 10px;
+    font-family: MouseMemoirs;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 88px;
+    color: #2463ff;
 }
 
 .stepName {
-    font-size: 1.2rem;
-    margin-bottom: 10px;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 48px;
+    line-height: 120%;
+    /* identical to box height, or 58px */
+    text-align: center;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: #261676;
 }
 
 .text {
-    font-size: 1rem;
-    text-align: center;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 26px;
+    line-height: 120%;
+    color: #887dc0;
 }

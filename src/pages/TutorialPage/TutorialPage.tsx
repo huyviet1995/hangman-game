@@ -2,14 +2,17 @@ import React from "react";
 import styles from "./TutorialPage.module.css";
 import Card from "components/Card/Card";
 import { useNavigate } from "react-router-dom";
+import { steps } from "./tutorialData";
+import cn from "classnames";
 
 const TutorialPage: React.FC = () => {
     const navigate = useNavigate();
     const handleBackClick = () => {
         navigate("/");
     };
+    const containerClasses = cn(styles.container, "p-12 h-full");
     return (
-        <div className={styles.container}>
+        <div className={containerClasses}>
             <header className={styles.header}>
                 <button className={styles.backButton} onClick={handleBackClick}>
                     Back
@@ -17,21 +20,13 @@ const TutorialPage: React.FC = () => {
                 <h1 className={styles.title}>How To Play</h1>
             </header>
             <div className={styles.cardContainer}>
-                <Card
-                    title="Step 1"
-                    stepName="Choose a Category"
-                    text="Lorem ipsum dolor sit amet, consectetur adipiscing elit."
-                />
-                <Card
-                    title="Step 2"
-                    stepName="Guess the Word"
-                    text="Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
-                />
-                <Card
-                    title="Step 3"
-                    stepName="Win or Lose"
-                    text="Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
-                />
+                {steps.map((step) => 
+                    <Card
+                        key={step.title}
+                        className={styles.card}
+                        {...step}
+                    />
+                )}
             </div>
         </div>
     );

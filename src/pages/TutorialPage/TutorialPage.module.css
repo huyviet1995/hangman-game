@@ -1,4 +1,21 @@
-
 .container {
-    background: url("/public/starter-code/assets/images/background-desktop.svg");
+    left: calc(50% - 1440px/2);
+    top: calc(50% - 1024px/2);
+    background: linear-gradient(180deg, #1A043A 0%, #151278 70.31%, #2B1677 100%);
+    opacity: 0.75;
+    padding: 80px 40px;
+    height: auto;
+}
+
+.cardContainer {
+    display: flex;
+    justify-content: space-around;
+    gap: 40px;
+}
+
+.card {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    gap: 40px;
 }
