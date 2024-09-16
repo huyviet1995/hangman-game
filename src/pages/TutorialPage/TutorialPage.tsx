@@ -15,8 +15,8 @@ const TutorialPage: React.FC = () => {
     return (
         <div className={containerClasses}>
             <header className={headerClasses}>
-                <div className={styles.buttonWrapper}>
-                  <button className={styles.backButton} onClick={handleBackClick} />
+                <div className={styles.buttonWrapper} onClick={handleBackClick}>
+                  <button className={styles.backButton} />
                 </div>
                 <h1 className={styles.title}>How To Play</h1>
             </header>
