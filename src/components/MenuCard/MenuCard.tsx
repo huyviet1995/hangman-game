@@ -3,8 +3,13 @@ import styles from "./MenuCard.module.css";
 import { ReactComponent as PlayButton } from "./icon-play.svg";
 import { ReactComponent as PlayButtonBackground } from "./play-button-background.svg";
 import Typography from "components/Typography/Typography";
+import { useNavigate } from "react-router-dom";
 
 const MenuCard: React.FC = () => {
+    const navigate = useNavigate();
+    const handleHowToPlayButton = () => {
+        navigate('/tutorial');
+    }
     return (
         <div className={styles.container}>
             <div className={styles.title}>
@@ -38,7 +43,7 @@ const MenuCard: React.FC = () => {
                 <PlayButtonBackground className={styles.playButtonBackground} />
                 <PlayButton className={styles.iconPlay} />
             </button>
-            <button className={styles.howToPlayButton}>How to Play</button>
+            <button className={styles.howToPlayButton} onClick={handleHowToPlayButton}>How to Play</button>
         </div>
     );
 };
