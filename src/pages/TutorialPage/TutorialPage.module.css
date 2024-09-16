@@ -1,10 +1,42 @@
 .container {
-    left: calc(50% - 1440px/2);
-    top: calc(50% - 1024px/2);
-    background: linear-gradient(180deg, #1A043A 0%, #151278 70.31%, #2B1677 100%);
+    left: calc(50% - 1440px / 2);
+    top: calc(50% - 1024px / 2);
+    background: linear-gradient(
+        180deg,
+        #1a043a 0%,
+        #151278 70.31%,
+        #2b1677 100%
+    );
     opacity: 0.75;
     padding: 80px 40px;
     height: auto;
+}
+
+.buttonWrapper {
+    width: 94px;
+    height: 94px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+
+    background: linear-gradient(
+            0deg,
+            rgba(255, 255, 255, 0.25),
+            rgba(255, 255, 255, 0.25)
+        ),
+        linear-gradient(180deg, #fe71fe 16.42%, #7199ff 100%);
+    box-shadow: inset 0px -6px 0px 7px rgba(157, 45, 245, 0.25);
+    border-radius: 999px;
+}
+
+.backButton {
+    background: url("/public/starter-code/assets/images/icon-back.svg");
+    width: 41px;
+    height: 38px;
+    bottom: 5px;
+    position: relative;
+    border: none;
 }
 
 .cardContainer {
