@@ -1,6 +1,6 @@
 import React from "react";
 import styles from "./TutorialPage.module.css";
-import Card from "components/Card/Card";
+import CardCategory from "components/CategoryCard/CategoryCard";
 import { useNavigate } from "react-router-dom";
 import { steps } from "./tutorialData";
 import cn from "classnames";
@@ -22,7 +22,7 @@ const TutorialPage: React.FC = () => {
             </header>
             <div className={styles.cardContainer}>
                 {steps.map((step) => 
-                    <Card
+                    <CardCategory
                         key={step.title}
                         className={styles.card}
                         {...step}
