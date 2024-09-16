@@ -39,7 +39,7 @@ const MenuCard: React.FC = () => {
                     {"Game"}
                 </Typography>
             </div>
-            <button className={styles.playButtonContainer}>
+            <button className={styles.playButtonContainer} onClick={() => navigate('/choose-category')}>
                 <PlayButtonBackground className={styles.playButtonBackground} />
                 <PlayButton className={styles.iconPlay} />
             </button>
