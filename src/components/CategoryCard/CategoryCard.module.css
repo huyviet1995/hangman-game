@@ -1,3 +1,10 @@
+.card {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    gap: 20px;
+}
+
 .cardTitle {
     font-family: MouseMemoirs;
     font-style: normal;
