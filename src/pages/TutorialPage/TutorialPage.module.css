@@ -10,6 +10,15 @@
     opacity: 0.75;
     padding: 80px 40px;
     height: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+    padding: 0 40px 80px 40px;
+}
+
+header {
+    display: flex;
+    align-items: center;
 }
 
 .buttonWrapper {
@@ -49,5 +58,19 @@
     display: flex;
     flex-direction: column;
     justify-content: space-around;
-    gap: 40px;
+    gap: 20px;
+}
+
+.title {
+    margin: 0 auto;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 136px;
+    line-height: 120%;
+    text-align: center;
+    letter-spacing: -0.005em;
+    background: linear-gradient(180deg, #67b6ff 16.42%, #ffffff 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
 }

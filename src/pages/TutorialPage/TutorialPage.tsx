@@ -11,9 +11,10 @@ const TutorialPage: React.FC = () => {
         navigate("/");
     };
     const containerClasses = cn(styles.container, "p-12 h-full");
+    const headerClasses = cn(styles.header, "mb-12");
     return (
         <div className={containerClasses}>
-            <header className={styles.header}>
+            <header className={headerClasses}>
                 <div className={styles.buttonWrapper}>
                   <button className={styles.backButton} onClick={handleBackClick} />
                 </div>
