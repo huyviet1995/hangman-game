@@ -11,9 +11,10 @@
     padding: 80px 40px;
     height: auto;
     display: flex;
+    align-items: center;
     flex-direction: column;
     gap: 40px;
-    padding: 0 40px 80px 40px;
+    padding: 250px 40px 80px 40px;
 }
 
 .cardContainer {
