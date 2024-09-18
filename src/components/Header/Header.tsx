@@ -9,6 +9,7 @@ interface HeaderProps {
     backButton?: boolean;
     title: string;
     iconComponent?: React.ReactNode;
+    titleClassName?: string;
 }
 
 const Header: React.FC<HeaderProps> = ({
@@ -18,6 +19,7 @@ const Header: React.FC<HeaderProps> = ({
     children,
     title,
     iconComponent,
+    titleClassName
 }) => {
     const headerClasses = cn(styles.header, className);
 
@@ -28,7 +30,7 @@ const Header: React.FC<HeaderProps> = ({
                     {iconComponent || <button className={styles.backButton} />}
                 </div>
             )}
-            <h1 className={styles.title}>{title}</h1>
+            <h1 className={cn(styles.title, titleClassName)}>{title}</h1>
             {children}
         </header>
     );

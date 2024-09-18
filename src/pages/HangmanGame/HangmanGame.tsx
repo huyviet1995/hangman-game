@@ -11,6 +11,7 @@ const HangmanGame: React.FC = () => {
     }
     const menuButton = <button className={styles.menuButton} />
     const headerClasses = cn(styles.header, "mb-12");
+    const healthbarComponent = <h1 className={styles.healthbar} style={{color: "white"}}>healthbar</h1>
     return (
         <div className={styles.container}>
             <Header 
@@ -18,7 +19,10 @@ const HangmanGame: React.FC = () => {
                 className={headerClasses}
                 title={category ?? ""}
                 iconComponent={menuButton}
-            />
+                titleClassName={styles.title}
+            >
+                {healthbarComponent}
+            </Header>
         </div>
     );
 };
