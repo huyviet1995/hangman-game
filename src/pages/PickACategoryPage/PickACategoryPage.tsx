@@ -3,11 +3,14 @@ import styles from "./PickACategoryPage.module.css";
 import Header from "components/Header/Header";
 import cn from "classnames";
 import ButtonCard from "components/ButtonCard/ButtonCard";
+import { useNavigate } from "react-router-dom";
 
 const PickACategory: React.FC = () => {
+
+    const navigate = useNavigate();
+
     const handleBackClick = () => {
-        // Handle back button click
-        console.log("Back button clicked");
+        navigate("/");
     };
 
     const containerClasses = cn(styles.container, "p-12 h-full");
