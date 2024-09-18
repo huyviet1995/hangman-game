@@ -9,7 +9,7 @@ const PickACategory: React.FC = () => {
 
     const navigate = useNavigate();
 
-    const handleBackClick = () => {
+    const handleIconClick = () => {
         navigate("/");
     };
 
@@ -32,7 +32,7 @@ const PickACategory: React.FC = () => {
     return (
         <div className={containerClasses}>
             <Header
-                handleBackClick={handleBackClick}
+                handleIconClick={handleIconClick}
                 className={headerClasses}
                 title={"Pick a Category"}
             />

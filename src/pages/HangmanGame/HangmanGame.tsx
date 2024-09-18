@@ -6,16 +6,18 @@ import cn from "classnames";
 
 const HangmanGame: React.FC = () => {
     const { category } = useParams<{ category: string }>();
-    const handleBackClick = () => {
+    const handleIconClick = () => {
         console.log("Handle back click heree.....");
     }
+    const menuButton = <button className={styles.menuButton} />
     const headerClasses = cn(styles.header, "mb-12");
     return (
         <div className={styles.container}>
             <Header 
-                handleBackClick={handleBackClick}
+                handleIconClick={handleIconClick}
                 className={headerClasses}
-                title={"Hangman Game - " + category}
+                title={category ?? ""}
+                iconComponent={menuButton}
             />
         </div>
     );

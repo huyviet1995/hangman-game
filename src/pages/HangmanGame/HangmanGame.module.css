@@ -10,9 +10,18 @@
         #2b1677 100%
     );
     opacity: 0.75;
+    padding: 40px 80px;
 }
 
 .title {
     font-size: 48px;
     color: #333;
+}
+
+.menuButton {
+    background: url("/public/starter-code/assets/images/icon-menu.svg");
+    width: 41px;
+    height: 38px;
+    position: relative;
+    border: none;
 }

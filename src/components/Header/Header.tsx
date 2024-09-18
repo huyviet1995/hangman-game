@@ -4,26 +4,28 @@ import cn from "classnames";
 
 interface HeaderProps {
     className?: string;
-    handleBackClick: () => void;
+    handleIconClick: () => void;
     children?: React.ReactNode;
     backButton?: boolean;
     title: string;
+    iconComponent?: React.ReactNode;
 }
 
 const Header: React.FC<HeaderProps> = ({
     className,
     backButton = true,
-    handleBackClick,
+    handleIconClick,
     children,
     title,
+    iconComponent,
 }) => {
     const headerClasses = cn(styles.header, className);
 
     return (
         <header className={headerClasses}>
             {backButton && (
-                <div className={styles.buttonWrapper} onClick={handleBackClick}>
-                    <button className={styles.backButton} />
+                <div className={styles.buttonWrapper} onClick={handleIconClick}>
+                    {iconComponent || <button className={styles.backButton} />}
                 </div>
             )}
             <h1 className={styles.title}>{title}</h1>

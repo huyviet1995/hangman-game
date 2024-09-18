@@ -8,7 +8,7 @@ import cn from "classnames";
 
 const TutorialPage: React.FC = () => {
     const navigate = useNavigate();
-    const handleBackClick = () => {
+    const handleIconClick = () => {
         navigate("/");
     };
     const containerClasses = cn(styles.container, "p-12 h-full");
@@ -16,7 +16,7 @@ const TutorialPage: React.FC = () => {
     return (
         <div className={containerClasses}>
             <Header
-                handleBackClick={handleBackClick}
+                handleIconClick={handleIconClick}
                 className={headerClasses}
                 title={"How to play"}
             />
