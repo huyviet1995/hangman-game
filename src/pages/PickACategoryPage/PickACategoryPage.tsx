@@ -2,6 +2,7 @@ import React from "react";
 import styles from "./PickACategoryPage.module.css";
 import Header from "components/Header/Header";
 import cn from "classnames";
+import ButtonCard from "components/ButtonCard/ButtonCard";
 
 const PickACategory: React.FC = () => {
     const handleBackClick = () => {
@@ -12,6 +13,15 @@ const PickACategory: React.FC = () => {
     const containerClasses = cn(styles.container, "p-12 h-full");
     const headerClasses = cn(styles.header, "mb-12");
 
+    const categories = [
+        "Movies",
+        "TV Shows",
+        "Countries",
+        "Capital Cities",
+        "Animals",
+        "Sports",
+    ]
+
     return (
         <div className={containerClasses}>
             <Header
@@ -20,17 +30,11 @@ const PickACategory: React.FC = () => {
                 title={"Pick a Category"}
             />
             <div className={styles.buttonContainer}>
-                {[
-                    "Movies",
-                    "TV Shows",
-                    "Countries",
-                    "Capital Cities",
-                    "Animals",
-                    "Sports",
-                ].map((category) => (
-                    <button key={category} className={styles.categoryButton}>
-                        {category}
-                    </button>
+                {categories.map((category) => (
+                    <ButtonCard
+                        key={category}
+                        text={category}
+                    />
                 ))}
             </div>
         </div>
