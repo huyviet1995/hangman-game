@@ -25,6 +25,13 @@
     text-align: center;
 }
 
+.healthbarContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+}
+
 .healthbar {
     width: 200px;
     height: 20px;
@@ -41,6 +48,10 @@
 
 .heartIcon {
     background: url("/public/starter-code/assets/images/icon-heart.svg");
+    background-size: contain;
+    width: 30px;
+    height: 30px;
+    background-repeat: no-repeat;
 }
 
 .menuButton {
