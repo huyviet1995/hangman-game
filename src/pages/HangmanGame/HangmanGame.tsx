@@ -3,13 +3,16 @@ import styles from "./HangmanGame.module.css";
 import { useParams } from "react-router-dom";
 import Header from "components/Header/Header";
 import cn from "classnames";
+import PuzzleBoard from "./PuzzleBoard";
 
 const HangmanGame: React.FC = () => {
     const { category } = useParams<{ category: string }>();
     const [health, setHealth] = useState<number>();
+    const [answer, setAnswer] = useState<string>("hello");
+    const [correctLetters, setCorrectLetters] = useState<string[]>(["h", "e"]);
     useEffect(() => {
         setHealth(40);
-    }, [])
+    }, []);
     const handleIconClick = () => {
         console.log("Handle back click heree.....");
     };
@@ -41,6 +44,12 @@ const HangmanGame: React.FC = () => {
             >
                 {healthbarComponent}
             </Header>
+
+            <PuzzleBoard
+                answer={answer}
+                correctLetters={correctLetters}
+                numberOfRows={1}
+            />
         </div>
     );
 };
