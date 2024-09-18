@@ -1,6 +1,4 @@
 .container {
-    left: calc(50% - 1440px / 2);
-    top: calc(50% - 1024px / 2);
     background: linear-gradient(
         180deg,
         #1a043a 0%,
@@ -12,6 +10,8 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    padding-left: 80px;
+    padding-right: 80px;
 }
 
 .header {
@@ -25,7 +25,6 @@
     gap: 16px;
     justify-content: center;
     width: 100%;
-    padding: 20px 80px;
 }
 
 .card {
