@@ -25,6 +25,10 @@ const PickACategory: React.FC = () => {
         "Sports",
     ]
 
+    const handlePickCategory = (category: string): void => {
+        navigate(`/game/${category}`);
+    }
+
     return (
         <div className={containerClasses}>
             <Header
@@ -35,6 +39,7 @@ const PickACategory: React.FC = () => {
             <div className={styles.buttonContainer}>
                 {categories.map((category) => (
                     <ButtonCard
+                        onClick={() => handlePickCategory(category)}
                         key={category}
                         text={category}
                     />
