@@ -24,7 +24,6 @@ const HangmanGame: React.FC<HangmanGameProps> = ({ initialHealth = 3 }) => {
     };
 
     const handleSelectLetters = (letter: string) => {
-        console.log({ letter, selectedLetters });
         if (!selectedLetters.includes(letter)) {
             setSelectedLetters([...selectedLetters, letter]);
             if (puzzle.toLowerCase().includes(letter.toLowerCase())) {
@@ -40,7 +39,7 @@ const HangmanGame: React.FC<HangmanGameProps> = ({ initialHealth = 3 }) => {
     const headerClasses = cn(styles.header, "mb-12");
 
     const healthbarComponent = useMemo(() => {
-        // Calculate the health percentage
+        // Calculate the health percentage 
         const healthPercentage = Math.floor(health * 100 / initialHealth);
         console.log({ healthPercentage, health, initialHealth });
         return (

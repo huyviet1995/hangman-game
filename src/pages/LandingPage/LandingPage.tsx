@@ -5,54 +5,57 @@ import Typography from "components/Typography/Typography";
 import { ReactComponent as PlayButton } from "./icon-play.svg";
 import { ReactComponent as PlayButtonBackground } from "./play-button-background.svg";
 import { useNavigate } from "react-router-dom";
+import PopupPortal from "components/PopupPortal/PopupPortal";
 
 const LandingPage: React.FC = () => {
-	const navigate = useNavigate();
+    const navigate = useNavigate();
     const handleHowToPlayButton = () => {
-        navigate('/tutorial');
-    }
+        navigate("/tutorial");
+    };
     return (
         <div className={styles.landingContainer}>
-            <MenuCard>
-                <div className={styles.title}>
-                    <Typography
-                        size={40}
-                        uppercase
-                        stroke={1}
-                        lineHeight={35}
-                        className={styles.textLeft}
+            <PopupPortal>
+                <MenuCard>
+                    <div className={styles.title}>
+                        <Typography
+                            size={40}
+                            uppercase
+                            stroke={1}
+                            lineHeight={35}
+                            className={styles.textLeft}
+                        >
+                            {"The"}
+                        </Typography>
+                        <Typography size={100} stroke={2} lineHeight={100}>
+                            {"Hangman"}
+                        </Typography>
+                        <Typography
+                            size={40}
+                            uppercase
+                            stroke={1}
+                            lineHeight={35}
+                            className={styles.textRight}
+                        >
+                            {"Game"}
+                        </Typography>
+                    </div>
+                    <button
+                        className={styles.playButtonContainer}
+                        onClick={() => navigate("/choose-category")}
                     >
-                        {"The"}
-                    </Typography>
-                    <Typography size={100} stroke={2} lineHeight={100}>
-                        {"Hangman"}
-                    </Typography>
-                    <Typography
-                        size={40}
-                        uppercase
-                        stroke={1}
-                        lineHeight={35}
-                        className={styles.textRight}
+                        <PlayButtonBackground
+                            className={styles.playButtonBackground}
+                        />
+                        <PlayButton className={styles.iconPlay} />
+                    </button>
+                    <button
+                        className={styles.howToPlayButton}
+                        onClick={handleHowToPlayButton}
                     >
-                        {"Game"}
-                    </Typography>
-                </div>
-                <button
-                    className={styles.playButtonContainer}
-                    onClick={() => navigate("/choose-category")}
-                >
-                    <PlayButtonBackground
-                        className={styles.playButtonBackground}
-                    />
-                    <PlayButton className={styles.iconPlay} />
-                </button>
-                <button
-                    className={styles.howToPlayButton}
-                    onClick={handleHowToPlayButton}
-                >
-                    How to Play
-                </button>
-            </MenuCard>
+                        How to Play
+                    </button>
+                </MenuCard>
+            </PopupPortal>
         </div>
     );
 };
