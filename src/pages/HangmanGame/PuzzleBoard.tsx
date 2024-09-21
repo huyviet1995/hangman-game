@@ -3,12 +3,12 @@ import styles from "./PuzzleBoard.module.css";
 import ButtonCard from "components/ButtonCard/ButtonCard";
 
 interface PuzzleBoardProps {
-    answer: string;
+    puzzle: string;
     correctLetters: string[];
 }
 
 const PuzzleBoard: React.FC<PuzzleBoardProps> = ({
-    answer,
+    puzzle,
     correctLetters,
 }) => {
     // States
@@ -19,7 +19,7 @@ const PuzzleBoard: React.FC<PuzzleBoardProps> = ({
 
     return (
         <div className={styles.puzzleBoard}>
-            {answer.split("").map((char, index) => (
+            {puzzle.split("").map((char, index) => (
                 <ButtonCard
                     key={index}
                     className={styles.letter}

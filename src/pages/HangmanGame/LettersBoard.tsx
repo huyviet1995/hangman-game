@@ -2,16 +2,13 @@ import React, { useState } from "react";
 import styles from "./LettersBoard.module.css";
 import ButtonCard from "components/ButtonCard/ButtonCard";
 
-const LettersBoard: React.FC = () => {
+interface LettersBoardProps {
+    selectedLetters: string[];
+    onSelectLetter: (letter: string) => void;
+}
+
+const LettersBoard: React.FC<LettersBoardProps> = ({ onSelectLetter, selectedLetters }) => {
     const letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("");
-
-    const [chosenLetters, setChosenLetters] = useState<string[]>([]);
-
-    const handleLeterClick = (letter: string) => {
-        if (!chosenLetters.includes(letter)) {
-            setChosenLetters([...chosenLetters, letter]);
-        }
-    };
 
     return (
         <div className={styles.container}>
@@ -19,7 +16,7 @@ const LettersBoard: React.FC = () => {
                 <ButtonCard 
                     key={letter} 
                     className={styles.letterCard}
-                    onClick={() => handleLeterClick(letter)}
+                    onClick={() => onSelectLetter(letter)}
                     text={letter}
                 />
             ))}

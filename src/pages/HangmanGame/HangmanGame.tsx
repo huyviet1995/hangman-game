@@ -7,16 +7,34 @@ import PuzzleBoard from "./PuzzleBoard";
 import LettersBoard from "./LettersBoard";
 
 const HangmanGame: React.FC = () => {
+    // States
     const { category } = useParams<{ category: string }>();
     const [health, setHealth] = useState<number>();
-    const [answer, setAnswer] = useState<string>("HelloWorld");
-    const [correctLetters, setCorrectLetters] = useState<string[]>(["h", "e"]);
+    const [puzzle, setPuzzle] = useState<string>("HelloWorld");
+    const [selectedLetters, setSelectedLetters] = useState<string[]>([]);
+    const [correctLetters, setCorrectLetters] = useState<string[]>([]);
+
+    // Effects
     useEffect(() => {
         setHealth(40);
     }, []);
+
+    // Handlers
     const handleIconClick = () => {
         console.log("Handle back click heree.....");
     };
+
+    const handleSelectLetters = (letter: string) => {
+        console.log({ letter, selectedLetters });
+        if (!selectedLetters.includes(letter)) {
+            setSelectedLetters([...selectedLetters, letter]);
+            if (puzzle.toLowerCase().includes(letter.toLowerCase())) {
+                setCorrectLetters([...correctLetters, letter]);
+            }
+        }
+    };
+
+    // Render
     const menuButton = <button className={styles.menuButton} />;
     const headerClasses = cn(styles.header, "mb-12");
 
@@ -46,12 +64,12 @@ const HangmanGame: React.FC = () => {
                 {healthbarComponent}
             </Header>
 
-            <PuzzleBoard
-                answer={answer}
-                correctLetters={correctLetters}
-            />
+            <PuzzleBoard puzzle={puzzle} correctLetters={correctLetters} />
 
-            <LettersBoard />
+            <LettersBoard
+                selectedLetters={selectedLetters}
+                onSelectLetter={handleSelectLetters}
+            />
         </div>
     );
 };
