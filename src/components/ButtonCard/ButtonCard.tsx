@@ -7,10 +7,11 @@ interface ButtonCardProps {
   text: string;
   className?: string;
   onClick?: () => void;
+  isPlaceholder?: boolean;
 }
 
-const ButtonCard: React.FC<ButtonCardProps> = ({ text, className, onClick }) => {
-  const buttonClasses = cn(styles.container, className);
+const ButtonCard: React.FC<ButtonCardProps> = ({ text, className, onClick, isPlaceholder = false }) => {
+  const buttonClasses = cn(styles.container, className, { [styles.placeholder]: isPlaceholder });
 
   return (
     <Card className={buttonClasses} onClick={onClick}>

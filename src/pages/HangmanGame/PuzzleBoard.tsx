@@ -24,6 +24,7 @@ const PuzzleBoard: React.FC<PuzzleBoardProps> = ({
                     key={index}
                     className={styles.letter}
                     onClick={onButtonClick}
+                    isPlaceholder={!correctLetters.includes(char)}
                     text={correctLetters.includes(char) ? char : ""}
                 />
             ))}
