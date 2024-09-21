@@ -8,6 +8,7 @@
   background-repeat: no-repeat;
   background-size: cover;
   font-family: MouseMemoirs;
+  background-image: url("/public/starter-code/assets/images/background-desktop.svg");
 }
 
 .App-logo {

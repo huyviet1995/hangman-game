@@ -19,17 +19,22 @@ const PuzzleBoard: React.FC<PuzzleBoardProps> = ({
     // Effect
     useEffect(() => {
         // Calculate the number of letters per row
-        const lettersPerRow = Math.ceil(answer.length / numberOfRows);
+        const baseLettersPerRow = Math.floor(answer.length / numberOfRows);
+        // Calculate the number of extra letters that need to be distributed
+        const extraLetters = answer.length % numberOfRows;
+
         const tempRows = [];
+        let startIndex = 0;
+
         for (let i = 0; i < numberOfRows; i++) {
-            tempRows.push(
-                answer.slice(i * lettersPerRow, (i + 1) * lettersPerRow)
-            );
+            // Calculate the number of letters for the current row
+            const lettersInRow = baseLettersPerRow + (extraLetters > 0 && i >= extraLetters ? 1 : 0);
+            tempRows.push(answer.slice(startIndex, startIndex + lettersInRow));
+            startIndex += lettersInRow;
         }
+
         setRows(tempRows);
     }, [numberOfRows, answer]);
-
-    console.log({ rows });
 
     // Handlers
     const onButtonClick = () => {

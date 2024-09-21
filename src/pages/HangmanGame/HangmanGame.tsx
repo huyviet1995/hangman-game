@@ -8,7 +8,7 @@ import PuzzleBoard from "./PuzzleBoard";
 const HangmanGame: React.FC = () => {
     const { category } = useParams<{ category: string }>();
     const [health, setHealth] = useState<number>();
-    const [answer, setAnswer] = useState<string>("hello");
+    const [answer, setAnswer] = useState<string>("HelloWorld");
     const [correctLetters, setCorrectLetters] = useState<string[]>(["h", "e"]);
     useEffect(() => {
         setHealth(40);
@@ -48,7 +48,7 @@ const HangmanGame: React.FC = () => {
             <PuzzleBoard
                 answer={answer}
                 correctLetters={correctLetters}
-                numberOfRows={1}
+                numberOfRows={2}
             />
         </div>
     );

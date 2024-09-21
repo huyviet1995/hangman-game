@@ -1,7 +1,6 @@
 .landingContainer {
     display: flex;
     flex-direction: column;
-    background-image: url("/public/starter-code/assets/images/background-desktop.svg");
     background-size: cover;
     align-items: center;
     justify-content: center;

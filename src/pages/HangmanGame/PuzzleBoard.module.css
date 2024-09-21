@@ -3,6 +3,7 @@
     font-size: 24px;
     font-weight: bold;
     flex-direction: column;
+    gap: 8px;
 }
 
 .row {
@@ -16,7 +17,6 @@
     width: 40px;
     height: 40px;
     text-align: center;
-    border-bottom: 2px solid black;
     line-height: 40px;
     font-size: 3rem;
 }
