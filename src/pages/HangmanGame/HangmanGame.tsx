@@ -6,18 +6,17 @@ import cn from "classnames";
 import PuzzleBoard from "./PuzzleBoard";
 import LettersBoard from "./LettersBoard";
 
-const HangmanGame: React.FC = () => {
+interface HangmanGameProps {
+    initialHealth?: number;
+}
+
+const HangmanGame: React.FC<HangmanGameProps> = ({ initialHealth = 3 }) => {
     // States
     const { category } = useParams<{ category: string }>();
-    const [health, setHealth] = useState<number>();
+    const [health, setHealth] = useState<number>(initialHealth);
     const [puzzle, setPuzzle] = useState<string>("HelloWorld");
     const [selectedLetters, setSelectedLetters] = useState<string[]>([]);
     const [correctLetters, setCorrectLetters] = useState<string[]>([]);
-
-    // Effects
-    useEffect(() => {
-        setHealth(40);
-    }, []);
 
     // Handlers
     const handleIconClick = () => {
@@ -30,6 +29,8 @@ const HangmanGame: React.FC = () => {
             setSelectedLetters([...selectedLetters, letter]);
             if (puzzle.toLowerCase().includes(letter.toLowerCase())) {
                 setCorrectLetters([...correctLetters, letter]);
+            } else {
+                setHealth(health - 1);
             }
         }
     };
@@ -39,12 +40,15 @@ const HangmanGame: React.FC = () => {
     const headerClasses = cn(styles.header, "mb-12");
 
     const healthbarComponent = useMemo(() => {
+        // Calculate the health percentage
+        const healthPercentage = Math.floor(health * 100 / initialHealth);
+        console.log({ healthPercentage, health, initialHealth });
         return (
             <div className={styles.healthbarContainer}>
                 <div className={styles.healthbar}>
                     <div
                         className={styles.health}
-                        style={{ width: `${health}%` }}
+                        style={{ width: `${healthPercentage}%` }}
                     ></div>
                 </div>
                 <div className={styles.heartIcon}></div>
