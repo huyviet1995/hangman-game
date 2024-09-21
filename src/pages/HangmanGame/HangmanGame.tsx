@@ -1,4 +1,4 @@
-import React, { useState, useMemo } from "react";
+import React, { useState, useMemo, useEffect } from "react";
 import styles from "./HangmanGame.module.css";
 import { useParams } from "react-router-dom";
 import Header from "components/Header/Header";
@@ -14,6 +14,11 @@ interface HangmanGameProps {
     initialHealth?: number;
 }
 
+enum GameStatus {
+    WIN = "WIN",
+    LOSE = "LOSE",
+}
+
 const HangmanGame: React.FC<HangmanGameProps> = ({ initialHealth = 3 }) => {
     // States
     const { category } = useParams<{ category: string }>();
@@ -21,6 +26,17 @@ const HangmanGame: React.FC<HangmanGameProps> = ({ initialHealth = 3 }) => {
     const [puzzle, setPuzzle] = useState<string>("HelloWorld");
     const [selectedLetters, setSelectedLetters] = useState<string[]>([]);
     const [correctLetters, setCorrectLetters] = useState<string[]>([]);
+    const [gameStatus, setGameStatus] = useState<GameStatus | undefined>(undefined);
+
+    // Effects
+    useEffect(() => {
+        const correctLettersToLowercase = correctLetters.map(letter => letter.toLowerCase());
+        if (health <= 0) {
+            setGameStatus(GameStatus.LOSE);
+        } else if (puzzle.split("").every(letter => correctLettersToLowercase.includes(letter.toLowerCase()))) {
+            setGameStatus(GameStatus.WIN);
+        }
+    }, [health, puzzle, correctLetters]);
 
     // Handlers
     const handleIconClick = () => {
@@ -40,6 +56,7 @@ const HangmanGame: React.FC<HangmanGameProps> = ({ initialHealth = 3 }) => {
 
     const handlePlayAgain = () => {
         setHealth(initialHealth);
+        setGameStatus(undefined);
         setSelectedLetters([]);
         setCorrectLetters([]);
         setPuzzle("HelloWorld");
@@ -91,7 +108,7 @@ const HangmanGame: React.FC<HangmanGameProps> = ({ initialHealth = 3 }) => {
                 selectedLetters={selectedLetters}
                 onSelectLetter={handleSelectLetters}
             />
-            {health <= 0 && (
+            {!!gameStatus && (
                 <PopupPortal>
                     <MenuCard>
                         <div className={styles.popupContent}>
@@ -100,7 +117,7 @@ const HangmanGame: React.FC<HangmanGameProps> = ({ initialHealth = 3 }) => {
                                 lineHeight={100}
                                 className={styles.popupTitle}
                             >
-                                {"You lose"}
+                                {gameStatus === GameStatus.WIN ? "YOU WIN" : "YOU LOSE"}
                             </Typography>
                             <section className={styles.popupButtons}>
                                 <ButtonCard
