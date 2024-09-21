@@ -2,8 +2,11 @@
     display: flex;
     font-size: 24px;
     font-weight: bold;
-    flex-direction: column;
+    flex-direction: row;
     gap: 8px;
+    width: 75%;
+    margin: auto;
+    flex-wrap: wrap;
 }
 
 .row {
@@ -14,9 +17,13 @@
 
 .letter {
     flex: 0 0 auto;
-    width: 40px;
-    height: 40px;
+    max-width: 80px;
+    max-height: 80px;
     text-align: center;
     line-height: 40px;
-    font-size: 3rem;
+    font-size: 4rem;
+    background: #2463ff;
+    box-shadow: inset 0px 0px 0px 3px #140e66, inset 0px 1px 0px 6px #3c74ff;
+    color: #ffffff;
+    border-radius: 25px;
 }

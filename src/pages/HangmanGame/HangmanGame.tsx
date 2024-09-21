@@ -4,6 +4,7 @@ import { useParams } from "react-router-dom";
 import Header from "components/Header/Header";
 import cn from "classnames";
 import PuzzleBoard from "./PuzzleBoard";
+import LettersBoard from "./LettersBoard";
 
 const HangmanGame: React.FC = () => {
     const { category } = useParams<{ category: string }>();
@@ -48,8 +49,9 @@ const HangmanGame: React.FC = () => {
             <PuzzleBoard
                 answer={answer}
                 correctLetters={correctLetters}
-                numberOfRows={2}
             />
+
+            <LettersBoard />
         </div>
     );
 };

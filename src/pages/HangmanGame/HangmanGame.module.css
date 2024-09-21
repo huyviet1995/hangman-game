@@ -1,16 +1,18 @@
 .container {
     display: flex;
     justify-content: center;
+    flex-direction: column;
+    background: linear-gradient(
+            180deg,
+            #1a043a 0%,
+            #151278 70.31%,
+            #2b1677 100%
+        ),
+        url("/public/starter-code/assets/images/background-desktop.svg");
     align-items: center;
     height: 100vh;
-    background: linear-gradient(
-        180deg,
-        #1a043a 0%,
-        #151278 70.31%,
-        #2b1677 100%
-    );
-    opacity: 0.75;
     padding: 40px 80px;
+    background-blend-mode: overlay;
 }
 
 .title {
