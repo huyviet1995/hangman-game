@@ -7,6 +7,8 @@ import PuzzleBoard from "./PuzzleBoard";
 import LettersBoard from "./LettersBoard";
 import PopupPortal from "components/PopupPortal/PopupPortal";
 import MenuCard from "components/MenuCard/MenuCard";
+import Typography from "components/Typography/Typography";
+import ButtonCard from "components/ButtonCard/ButtonCard";
 
 interface HangmanGameProps {
     initialHealth?: number;
@@ -39,7 +41,7 @@ const HangmanGame: React.FC<HangmanGameProps> = ({ initialHealth = 3 }) => {
     const handlePlayAgain = () => {
         setHealth(initialHealth);
         setSelectedLetters([]);
-        setCorrectLetters([]); 
+        setCorrectLetters([]);
         setPuzzle("HelloWorld");
     };
 
@@ -50,7 +52,6 @@ const HangmanGame: React.FC<HangmanGameProps> = ({ initialHealth = 3 }) => {
     const handleQuitGame = () => {
         console.log("Handle quit game click heree.....");
     };
-
 
     // Render
     const menuButton = <button className={styles.menuButton} />;
@@ -94,14 +95,30 @@ const HangmanGame: React.FC<HangmanGameProps> = ({ initialHealth = 3 }) => {
                 <PopupPortal>
                     <MenuCard>
                         <div className={styles.popupContent}>
-                            <h2>Game Over</h2>
-                            <button onClick={handlePlayAgain}>
-                                Play Again
-                            </button>
-                            <button onClick={handleNewCategory}>
-                                New Category
-                            </button>
-                            <button onClick={handleQuitGame}>Quit Game</button>
+                            <Typography
+                                size={100}
+                                lineHeight={100}
+                                className={styles.popupTitle}
+                            >
+                                {"You lose"}
+                            </Typography>
+                            <section className={styles.popupButtons}>
+                                <ButtonCard
+                                    className={styles.popupButton}
+                                    onClick={handlePlayAgain}
+                                    text="Play Again"
+                                />
+                                <ButtonCard
+                                    className={styles.popupButton}
+                                    onClick={handleNewCategory}
+                                    text="New Category"
+                                />
+                                <ButtonCard
+                                    className={cn(styles.popupButton, styles.quitButton)}
+                                    onClick={handleQuitGame}
+                                    text="Quit Game"
+                                />
+                            </section>
                         </div>
                     </MenuCard>
                 </PopupPortal>
