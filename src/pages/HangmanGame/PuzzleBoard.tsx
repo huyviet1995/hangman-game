@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useCallback } from "react";
 import styles from "./PuzzleBoard.module.css";
 import ButtonCard from "components/ButtonCard/ButtonCard";
 
@@ -17,6 +17,10 @@ const PuzzleBoard: React.FC<PuzzleBoardProps> = ({
         console.log("onButtonClick");
     };
 
+    const isCorrect = useCallback((char: string) => {
+        return correctLetters.some(letter => letter.toLowerCase() === char.toLowerCase());
+    }, [correctLetters]);
+
     return (
         <div className={styles.puzzleBoard}>
             {puzzle.split("").map((char, index) => (
@@ -24,8 +28,8 @@ const PuzzleBoard: React.FC<PuzzleBoardProps> = ({
                     key={index}
                     className={styles.letter}
                     onClick={onButtonClick}
-                    isPlaceholder={!correctLetters.includes(char)}
-                    text={correctLetters.includes(char) ? char : ""}
+                    isPlaceholder={!isCorrect(char)}
+                    text={isCorrect(char) ? char : " "}
                 />
             ))}
         </div>
