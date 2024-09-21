@@ -12,7 +12,9 @@ const PopupPortal: React.FC<PopupPortalProps> = ({ children }) => {
 
     return ReactDOM.createPortal(
         <div className={styles.popupOverlay}>
-            {children}
+            <div className={styles.popupContent}>
+                {children}
+            </div>
         </div>,
         portalRoot
     );
