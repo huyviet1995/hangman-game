@@ -121,6 +121,17 @@ const HangmanGame: React.FC<HangmanGameProps> = ({ initialHealth = 3 }) => {
         navigate("/");
     };
 
+    const handleHint = () => {
+        const puzzleLetters = puzzle.split("");
+        const hintLetter = puzzleLetters.find(
+            (letter) => !correctLetters.includes(letter)
+        );
+        if (hintLetter) {
+            handleSelectLetters(hintLetter);
+            setCorrectLetters([...correctLetters, hintLetter]);
+        }
+    };
+
     // Render
     const menuButton = <button className={styles.menuButton} onClick={handlePauseGame} />;
     const headerClasses = cn(styles.header, "mb-12");
@@ -150,6 +161,13 @@ const HangmanGame: React.FC<HangmanGameProps> = ({ initialHealth = 3 }) => {
                 iconComponent={menuButton}
                 titleClassName={styles.title}
             >
+                <button
+                    className={cn(styles.hintButton, "ms-2", "btn", "btn-secondary")}
+                    onClick={handleHint}
+                    disabled={health <= 1 || gameStatus !== undefined}
+                >
+                    <i className="bi bi-lightbulb me-1"></i>
+                </button>
                 {healthbarComponent}
             </Header>
 
