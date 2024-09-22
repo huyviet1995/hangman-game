@@ -36,6 +36,7 @@ const HangmanGame: React.FC<HangmanGameProps> = ({ initialHealth = 3 }) => {
     // Variables
     const navigate = useNavigate();
     // States
+    const [hintsLeft, setHintsLeft] = useState<number>(3);
     const { category } = useParams<{ category: string }>();
     const [health, setHealth] = useState<number>(initialHealth);
     const [puzzle, setPuzzle] = useState<string>("");
@@ -45,6 +46,7 @@ const HangmanGame: React.FC<HangmanGameProps> = ({ initialHealth = 3 }) => {
         undefined
     );
     const [isPaused, setIsPaused] = useState<boolean>(false);
+    const [showPopup, setShowPopup] = useState(false);
 
     // Effects
     useEffect(() => {
@@ -81,10 +83,21 @@ const HangmanGame: React.FC<HangmanGameProps> = ({ initialHealth = 3 }) => {
         }
     }, [health, puzzle, correctLetters]);
 
+    useEffect(() => {
+        let timer: NodeJS.Timeout;
+        if (gameStatus) {
+            timer = setTimeout(() => {
+                setShowPopup(true);
+            }, 1500); // 1.5 seconds delay
+        }
+        return () => clearTimeout(timer);
+    }, [gameStatus]);
+
     // Handlers
     const handleIconClick = () => {
         console.log("Handle back click heree.....");
     };
+
 
     const handleSelectLetters = (letter: string) => {
         if (!selectedLetters.includes(letter)) {
@@ -122,6 +135,9 @@ const HangmanGame: React.FC<HangmanGameProps> = ({ initialHealth = 3 }) => {
     };
 
     const handleHint = () => {
+        if (hintsLeft <= 0) {
+            return;
+        }
         const puzzleLetters = puzzle.split("");
         const hintLetter = puzzleLetters.find(
             (letter) => !correctLetters.includes(letter)
@@ -129,6 +145,7 @@ const HangmanGame: React.FC<HangmanGameProps> = ({ initialHealth = 3 }) => {
         if (hintLetter) {
             handleSelectLetters(hintLetter);
             setCorrectLetters([...correctLetters, hintLetter]);
+            setHintsLeft(hintsLeft - 1);
         }
     };
 
@@ -166,7 +183,8 @@ const HangmanGame: React.FC<HangmanGameProps> = ({ initialHealth = 3 }) => {
                     onClick={handleHint}
                     disabled={health <= 1 || gameStatus !== undefined}
                 >
-                    <i className="bi bi-lightbulb me-1"></i>
+                    <span className="bi bi-lightbulb me-1" style={{ color: 'yellow' }} aria-hidden="true"></span>
+                    <span className="ms-1">{hintsLeft}</span>
                 </button>
                 {healthbarComponent}
             </Header>
@@ -177,7 +195,7 @@ const HangmanGame: React.FC<HangmanGameProps> = ({ initialHealth = 3 }) => {
                 selectedLetters={selectedLetters}
                 onSelectLetter={handleSelectLetters}
             />
-            {!!gameStatus && (
+            {!!gameStatus && showPopup && (
                 <PopupPortal>
                     <MenuCard>
                         <div className={styles.popupContent}>

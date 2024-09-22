@@ -66,6 +66,20 @@
     border: none;
 }
 
+.hintButton {
+    width: 41px;
+    height: 38px;
+    position: relative;
+    border: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: transparent;
+    background: transparent !important;
+    min-width: fit-content;
+    margin-right: 20px;
+}
+
 /* The popup */
 .popupContent {
     display: flex;
