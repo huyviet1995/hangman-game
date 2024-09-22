@@ -21,19 +21,28 @@ const Header: React.FC<HeaderProps> = ({
     iconComponent,
     titleClassName
 }) => {
+    // Render
+    const renderBackButton = () => {
+        if (!backButton) return null;
+        
+        return (
+            <div className={styles.buttonWrapper} onClick={handleIconClick}>
+                {iconComponent || <button className={styles.backButton} />}
+            </div>
+        );
+    };
+
     const headerClasses = cn(styles.header, className);
+    const titleClasses = cn(styles.title, titleClassName);
 
     return (
         <header className={headerClasses}>
-            {backButton && (
-                <div className={styles.buttonWrapper} onClick={handleIconClick}>
-                    {iconComponent || <button className={styles.backButton} />}
-                </div>
-            )}
-            <h1 className={cn(styles.title, titleClassName)}>{title}</h1>
+            {renderBackButton()}
+            <h1 className={titleClasses}>{title}</h1>
             {children}
         </header>
     );
 };
 
 export default Header;
+

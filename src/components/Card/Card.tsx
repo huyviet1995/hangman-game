@@ -12,3 +12,6 @@ const Card: React.FC<CardProps> = ({ children, className, ...props }) => {
 };
 
 export default Card;
+
+
+
