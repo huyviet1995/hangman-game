@@ -114,7 +114,8 @@ const HangmanGame: React.FC<HangmanGameProps> = ({ initialHealth = 3 }) => {
     };
 
     const handleQuitGame = () => {
-        console.log("Handle quit game click heree.....");
+        // Navigate user back to the home page
+        navigate("/");
     };
 
     // Render
