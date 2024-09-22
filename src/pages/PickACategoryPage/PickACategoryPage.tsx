@@ -42,6 +42,7 @@ const PickACategory: React.FC = () => {
                         onClick={() => handlePickCategory(category)}
                         key={category}
                         text={category}
+                        className={styles.card}
                     />
                 ))}
             </div>
