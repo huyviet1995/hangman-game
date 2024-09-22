@@ -1,13 +1,6 @@
 .container {
     left: calc(50% - 1440px / 2);
     top: calc(50% - 1024px / 2);
-    background: linear-gradient(
-        180deg,
-        #1a043a 0%,
-        #151278 70.31%,
-        #2b1677 100%
-    );
-    opacity: 0.75;
     padding: 80px 40px;
     height: auto;
     display: flex;

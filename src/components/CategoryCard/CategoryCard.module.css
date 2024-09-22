@@ -3,6 +3,8 @@
     flex-direction: column;
     justify-content: space-around;
     gap: 20px;
+    background: #ffffff;
+    border-radius: 40px;
 }
 
 .cardTitle {
