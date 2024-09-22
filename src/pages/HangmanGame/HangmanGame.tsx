@@ -55,8 +55,13 @@ const HangmanGame: React.FC<HangmanGameProps> = ({ initialHealth = 3 }) => {
                     Math.floor(Math.random() * categoryPuzzles.length)
                 ];
             setPuzzle(randomPuzzle);
+            // Reset game state
+            setHealth(initialHealth);
+            setSelectedLetters([]);
+            setCorrectLetters([]);
+            setGameStatus(undefined);
         }
-    }, [category]);
+    }, [category, initialHealth]);
 
     useEffect(() => {
         const correctLettersToLowercase = correctLetters.map((letter) =>
@@ -109,12 +114,10 @@ const HangmanGame: React.FC<HangmanGameProps> = ({ initialHealth = 3 }) => {
     }
 
     const handleNewCategory = () => {
-        // Move user to the category selection page
         navigate("/choose-category");
     };
 
     const handleQuitGame = () => {
-        // Navigate user back to the home page
         navigate("/");
     };
 
@@ -233,3 +236,4 @@ const HangmanGame: React.FC<HangmanGameProps> = ({ initialHealth = 3 }) => {
 };
 
 export default HangmanGame;
+
