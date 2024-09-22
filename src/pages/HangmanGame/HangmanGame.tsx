@@ -126,17 +126,17 @@ const HangmanGame: React.FC<HangmanGameProps> = ({ initialHealth = 3 }) => {
     const headerClasses = cn(styles.header, "mb-12");
 
     const healthbarComponent = useMemo(() => {
-        // Calculate the health percentage
-        const healthPercentage = Math.floor((health * 100) / initialHealth);
+        const healthPercentage = Math.floor((health / initialHealth) * 100);
+
         return (
             <div className={styles.healthbarContainer}>
                 <div className={styles.healthbar}>
                     <div
                         className={styles.health}
                         style={{ width: `${healthPercentage}%` }}
-                    ></div>
+                    />
                 </div>
-                <div className={styles.heartIcon}></div>
+                <div className={styles.heartIcon} />
             </div>
         );
     }, [health, initialHealth]);
@@ -196,7 +196,7 @@ const HangmanGame: React.FC<HangmanGameProps> = ({ initialHealth = 3 }) => {
                     </MenuCard>
                 </PopupPortal>
             )}
-            {isPaused && (
+            {isPaused && gameStatus === undefined && (
                 <PopupPortal>
                     <MenuCard>
                         <div className={styles.popupContent}>
