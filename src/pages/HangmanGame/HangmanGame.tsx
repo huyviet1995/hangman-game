@@ -115,7 +115,7 @@ const HangmanGame: React.FC<HangmanGameProps> = ({ initialHealth = 3 }) => {
         setGameStatus(undefined);
         setSelectedLetters([]);
         setCorrectLetters([]);
-        setPuzzle("HelloWorld");
+        setPuzzle("");
     };
 
     const handleResumeGame = () => {
@@ -195,7 +195,7 @@ const HangmanGame: React.FC<HangmanGameProps> = ({ initialHealth = 3 }) => {
                 selectedLetters={selectedLetters}
                 onSelectLetter={handleSelectLetters}
             />
-            {!!gameStatus && showPopup && (
+            {(!!gameStatus && showPopup) || (isPaused && gameStatus === undefined) ? (
                 <PopupPortal>
                     <MenuCard>
                         <div className={styles.popupContent}>
@@ -204,26 +204,29 @@ const HangmanGame: React.FC<HangmanGameProps> = ({ initialHealth = 3 }) => {
                                 lineHeight={100}
                                 className={styles.popupTitle}
                             >
-                                {gameStatus === GameStatus.WIN
-                                    ? "YOU WIN"
-                                    : "YOU LOSE"}
+                                {gameStatus ? (gameStatus === GameStatus.WIN ? "YOU WIN" : "YOU LOSE") : "Game Paused"}
                             </Typography>
                             <section className={styles.popupButtons}>
-                                <ButtonCard
-                                    className={styles.popupButton}
-                                    onClick={handlePlayAgain}
-                                    text="Play Again"
-                                />
+                                {gameStatus ? (
+                                    <ButtonCard
+                                        className={styles.popupButton}
+                                        onClick={handlePlayAgain}
+                                        text="Play Again"
+                                    />
+                                ) : (
+                                    <ButtonCard
+                                        className={styles.popupButton}
+                                        onClick={handleResumeGame}
+                                        text="Resume Game"
+                                    />
+                                )}
                                 <ButtonCard
                                     className={styles.popupButton}
                                     onClick={handleNewCategory}
                                     text="New Category"
                                 />
                                 <ButtonCard
-                                    className={cn(
-                                        styles.popupButton,
-                                        styles.quitButton
-                                    )}
+                                    className={cn(styles.popupButton, styles.quitButton)}
                                     onClick={handleQuitGame}
                                     text="Quit Game"
                                 />
@@ -231,42 +234,7 @@ const HangmanGame: React.FC<HangmanGameProps> = ({ initialHealth = 3 }) => {
                         </div>
                     </MenuCard>
                 </PopupPortal>
-            )}
-            {isPaused && gameStatus === undefined && (
-                <PopupPortal>
-                    <MenuCard>
-                        <div className={styles.popupContent}>
-                            <Typography
-                                size={100}
-                                lineHeight={100}
-                                className={styles.popupTitle}
-                            >
-                                Game Paused
-                            </Typography>
-                            <section className={styles.popupButtons}>
-                                <ButtonCard
-                                    className={styles.popupButton}
-                                    onClick={handleResumeGame}
-                                    text="Resume Game"
-                                />
-                                <ButtonCard
-                                    className={styles.popupButton}
-                                    onClick={handleNewCategory}
-                                    text="New Category"
-                                />
-                                <ButtonCard
-                                    className={cn(
-                                        styles.popupButton,
-                                        styles.quitButton
-                                    )}
-                                    onClick={handleQuitGame}
-                                    text="Quit Game"
-                                />
-                            </section>
-                        </div>
-                    </MenuCard>
-                </PopupPortal>
-            )}
+            ) : null}
         </div>
     );
 };
