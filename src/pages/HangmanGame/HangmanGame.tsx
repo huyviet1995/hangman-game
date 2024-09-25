@@ -1,4 +1,4 @@
-import React, { useState, useMemo, useEffect } from "react";
+import React, { useState, useMemo, useEffect, useCallback } from "react";
 import styles from "./HangmanGame.module.css";
 import { useNavigate, useParams } from "react-router-dom";
 import Header from "components/Header/Header";
@@ -48,22 +48,29 @@ const HangmanGame: React.FC<HangmanGameProps> = ({ initialHealth = 3 }) => {
     const [isPaused, setIsPaused] = useState<boolean>(false);
     const [showPopup, setShowPopup] = useState(false);
 
+    // Memoized function to generate a random puzzle
+    const generateRandomPuzzle = useCallback(() => {
+        return () => {
+            if (category && puzzles[category]) {
+                const randomIndex = Math.floor(Math.random() * puzzles[category].length);
+                setPuzzle(puzzles[category][randomIndex]);
+            }
+        };
+    }, [category]);
+
+    console.log({ puzzle});
+
     // Effects
     useEffect(() => {
+        generateRandomPuzzle();
         if (category && puzzles[category]) {
-            const categoryPuzzles = puzzles[category];
-            const randomPuzzle =
-                categoryPuzzles[
-                    Math.floor(Math.random() * categoryPuzzles.length)
-                ];
-            setPuzzle(randomPuzzle);
             // Reset game state
             setHealth(initialHealth);
             setSelectedLetters([]);
             setCorrectLetters([]);
             setGameStatus(undefined);
         }
-    }, [category, initialHealth]);
+    }, [category, initialHealth, generateRandomPuzzle]);
 
     useEffect(() => {
         const correctLettersToLowercase = correctLetters.map((letter) =>
@@ -115,7 +122,8 @@ const HangmanGame: React.FC<HangmanGameProps> = ({ initialHealth = 3 }) => {
         setGameStatus(undefined);
         setSelectedLetters([]);
         setCorrectLetters([]);
-        setPuzzle("");
+        generateRandomPuzzle();
+        setHintsLeft(3);
     };
 
     const handleResumeGame = () => {
@@ -128,6 +136,7 @@ const HangmanGame: React.FC<HangmanGameProps> = ({ initialHealth = 3 }) => {
 
     const handleNewCategory = () => {
         navigate("/choose-category");
+        setHintsLeft(3);
     };
 
     const handleQuitGame = () => {
