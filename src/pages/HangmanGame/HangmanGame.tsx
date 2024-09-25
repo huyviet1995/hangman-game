@@ -49,16 +49,16 @@ const HangmanGame: React.FC<HangmanGameProps> = ({ initialHealth = 3 }) => {
     const [showPopup, setShowPopup] = useState(false);
 
     // Memoized function to generate a random puzzle
-    const generateRandomPuzzle = useCallback(() => {
+    const generateRandomPuzzle = useMemo(() => {
         return () => {
             if (category && puzzles[category]) {
-                const randomIndex = Math.floor(Math.random() * puzzles[category].length);
+                const randomIndex = Math.floor(
+                    Math.random() * puzzles[category].length
+                );
                 setPuzzle(puzzles[category][randomIndex]);
             }
         };
     }, [category]);
-
-    console.log({ puzzle});
 
     // Effects
     useEffect(() => {
@@ -105,7 +105,6 @@ const HangmanGame: React.FC<HangmanGameProps> = ({ initialHealth = 3 }) => {
         console.log("Handle back click heree.....");
     };
 
-
     const handleSelectLetters = (letter: string) => {
         if (!selectedLetters.includes(letter)) {
             setSelectedLetters([...selectedLetters, letter]);
@@ -128,11 +127,11 @@ const HangmanGame: React.FC<HangmanGameProps> = ({ initialHealth = 3 }) => {
 
     const handleResumeGame = () => {
         setIsPaused(false);
-    }
+    };
 
     const handlePauseGame = () => {
         setIsPaused(true);
-    }
+    };
 
     const handleNewCategory = () => {
         navigate("/choose-category");
@@ -159,7 +158,9 @@ const HangmanGame: React.FC<HangmanGameProps> = ({ initialHealth = 3 }) => {
     };
 
     // Render
-    const menuButton = <button className={styles.menuButton} onClick={handlePauseGame} />;
+    const menuButton = (
+        <button className={styles.menuButton} onClick={handlePauseGame} />
+    );
     const headerClasses = cn(styles.header, "mb-12");
 
     const healthbarComponent = useMemo(() => {
@@ -178,6 +179,8 @@ const HangmanGame: React.FC<HangmanGameProps> = ({ initialHealth = 3 }) => {
         );
     }, [health, initialHealth]);
 
+    console.log("puzzle", puzzle);  
+
     return (
         <div className={styles.container}>
             <Header
@@ -188,11 +191,20 @@ const HangmanGame: React.FC<HangmanGameProps> = ({ initialHealth = 3 }) => {
                 titleClassName={styles.title}
             >
                 <button
-                    className={cn(styles.hintButton, "ms-2", "btn", "btn-secondary")}
+                    className={cn(
+                        styles.hintButton,
+                        "ms-2",
+                        "btn",
+                        "btn-secondary"
+                    )}
                     onClick={handleHint}
                     disabled={health <= 1 || gameStatus !== undefined}
                 >
-                    <span className="bi bi-lightbulb me-1" style={{ color: 'yellow' }} aria-hidden="true"></span>
+                    <span
+                        className="bi bi-lightbulb me-1"
+                        style={{ color: "yellow" }}
+                        aria-hidden="true"
+                    ></span>
                     <span className="ms-1">{hintsLeft}</span>
                 </button>
                 {healthbarComponent}
@@ -204,7 +216,8 @@ const HangmanGame: React.FC<HangmanGameProps> = ({ initialHealth = 3 }) => {
                 selectedLetters={selectedLetters}
                 onSelectLetter={handleSelectLetters}
             />
-            {(!!gameStatus && showPopup) || (isPaused && gameStatus === undefined) ? (
+            {(!!gameStatus && showPopup) ||
+            (isPaused && gameStatus === undefined) ? (
                 <PopupPortal>
                     <MenuCard>
                         <div className={styles.popupContent}>
@@ -213,7 +226,11 @@ const HangmanGame: React.FC<HangmanGameProps> = ({ initialHealth = 3 }) => {
                                 lineHeight={100}
                                 className={styles.popupTitle}
                             >
-                                {gameStatus ? (gameStatus === GameStatus.WIN ? "YOU WIN" : "YOU LOSE") : "Game Paused"}
+                                {gameStatus
+                                    ? gameStatus === GameStatus.WIN
+                                        ? "YOU WIN"
+                                        : "YOU LOSE"
+                                    : "Game Paused"}
                             </Typography>
                             <section className={styles.popupButtons}>
                                 {gameStatus ? (
@@ -235,7 +252,10 @@ const HangmanGame: React.FC<HangmanGameProps> = ({ initialHealth = 3 }) => {
                                     text="New Category"
                                 />
                                 <ButtonCard
-                                    className={cn(styles.popupButton, styles.quitButton)}
+                                    className={cn(
+                                        styles.popupButton,
+                                        styles.quitButton
+                                    )}
                                     onClick={handleQuitGame}
                                     text="Quit Game"
                                 />
@@ -249,4 +269,3 @@ const HangmanGame: React.FC<HangmanGameProps> = ({ initialHealth = 3 }) => {
 };
 
 export default HangmanGame;
-

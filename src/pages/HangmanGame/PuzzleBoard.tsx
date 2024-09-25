@@ -16,6 +16,7 @@ const PuzzleBoard: React.FC<PuzzleBoardProps> = ({
     const onButtonClick = () => {
         console.log("onButtonClick");
     };
+    
 
     const isCorrect = useCallback((char: string) => {
         return correctLetters.some(letter => letter.toLowerCase() === char.toLowerCase());
@@ -24,13 +25,17 @@ const PuzzleBoard: React.FC<PuzzleBoardProps> = ({
     return (
         <div className={styles.puzzleBoard}>
             {puzzle.split("").map((char, index) => (
-                <ButtonCard
-                    key={index}
-                    className={styles.letter}
-                    onClick={onButtonClick}
-                    isPlaceholder={!isCorrect(char)}
-                    text={isCorrect(char) ? char : " "}
-                />
+                char === " " ? (
+                    <div key={index} className={styles.space} />
+                ) : (
+                    <ButtonCard
+                        key={index}
+                        className={styles.letter}
+                        onClick={onButtonClick}
+                        isPlaceholder={!isCorrect(char)}
+                        text={isCorrect(char) ? char : " "}
+                    />
+                )
             ))}
         </div>
     );

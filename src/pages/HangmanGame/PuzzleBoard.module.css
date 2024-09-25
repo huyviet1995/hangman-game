@@ -28,3 +28,8 @@
     color: #ffffff;
     border-radius: 25px;
 }
+
+.space {
+    width: 20px; /* Adjust this value to match your design */
+    display: inline-block;
+}
