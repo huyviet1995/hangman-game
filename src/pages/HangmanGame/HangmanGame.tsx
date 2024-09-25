@@ -73,32 +73,38 @@ const HangmanGame: React.FC<HangmanGameProps> = ({ initialHealth = 3 }) => {
     }, [category, initialHealth, generateRandomPuzzle]);
 
     useEffect(() => {
-        const correctLettersToLowercase = correctLetters.map((letter) =>
-            letter.toLowerCase()
-        );
-        if (health <= 0) {
-            setGameStatus(GameStatus.LOSE);
-        } else if (
-            puzzle &&
-            puzzle
-                ?.split("")
-                ?.every((letter) =>
-                    correctLettersToLowercase.includes(letter.toLowerCase())
-                )
-        ) {
+        const normalizedPuzzle = puzzle.toLowerCase().replace(/\s/g, "");
+        const normalizedGuess = correctLetters.join("").toLowerCase();
+
+        const isWin = normalizedPuzzle
+            .split("")
+            .every((letter) => normalizedGuess.includes(letter));
+
+        if (isWin) {
             setGameStatus(GameStatus.WIN);
+        } else if (health === 0) {
+            setGameStatus(GameStatus.LOSE);
         }
-    }, [health, puzzle, correctLetters]);
+    }, [puzzle, correctLetters, health]);
 
     useEffect(() => {
         let timer: NodeJS.Timeout;
-        if (gameStatus) {
+        if (gameStatus !== undefined) {
             timer = setTimeout(() => {
                 setShowPopup(true);
             }, 1500); // 1.5 seconds delay
+            return () => {
+                setShowPopup(false);
+                return clearTimeout(timer);
+            };
         }
-        return () => clearTimeout(timer);
     }, [gameStatus]);
+
+    useEffect(() => {
+        setShowPopup(false);
+        setGameStatus(undefined);
+        setCorrectLetters([]);
+    }, []);
 
     // Handlers
     const handleIconClick = () => {
@@ -179,7 +185,7 @@ const HangmanGame: React.FC<HangmanGameProps> = ({ initialHealth = 3 }) => {
         );
     }, [health, initialHealth]);
 
-    console.log("puzzle", puzzle);  
+    console.log("puzzle", puzzle);
 
     return (
         <div className={styles.container}>
